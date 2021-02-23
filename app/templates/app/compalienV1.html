@@ -1,0 +1,103 @@
+{% load widget_tweaks %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Compalien | User Search Engine for Reddit</title>
+
+    <link rel="stylesheet" href="{% static '/app/compalienV1.css' %}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Bungee+Shade|Press+Start+2P">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+
+<body style="background-color: rgba(245, 222, 179, 0.938);">
+
+    <!-- All Page Content -->
+    <div id="allContent" class="container col-xs-12 col-sm-12">
+
+        <!-- Search Box -->
+        <div id="searchBox" class="container mt-5 col-sm-10 col-md-9 col-xl-7 text-center">
+
+            <!-- Header -->
+            <div id="header" class="p-2 mt-1">
+                <h1>Compalien</h1>
+            </div>
+
+            <!-- Search Form -->
+            <div id="searchForm" class="container col-sm-10 col-md-8 col-xl-7">
+                <form method="GET" action="" name="getUsers" class="" id="getUserForm">
+                    {% csrf_token %}
+
+                    <!-- Subreddit Input -->
+                    <div id="subreddit-search-box" class="form-group pt-2">
+                        {% render_field form.subreddit class="formText" placeholder="Enter Subreddit" id="subreddit" autocomplete="off" %}
+                    </div>
+
+                    <!-- Time Parameter -->
+                    <div id="formDropdown" class="form-group">
+                        {% render_field form.timeParam class="formDropdown" id="timeParam" %}
+                    </div>
+
+                    <!-- Search Users Button -->
+                    <div id="formButton" class="pb-2 mb-1">
+                        <button type="submit" value="Submit" class="formButton" id="submitButton">
+                            Search Users
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+
+        <!-- Footer -->
+        <div id="footer" class="text-center">
+            <a href="https://github.com/hrstm/Compalien" target="_blank"
+                style="text-decoration: none; color:rgb(131, 24, 24);">
+                <h3>GitHub</h3>
+            </a>
+
+        </div>
+
+        <!-- Results Box -->
+        <div class="ajaxProgress pt-3 m-2 mb-4">
+            <h6>Loading Users</h6>
+            <img src="http://ajaxload.info/cache/FF/FF/FF/9E/10/10/36-1.gif" alt="Loader">
+        </div>
+
+        <div id="resultsBox" class="container col-xs-12 col-sm-10 col-md-9 col-xl-7 p-2">
+
+            <div id="userResults">
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="lightBox" id="lightBox" onclick="closeBtn()">
+        <div class='lightBox-container m-4'>
+            <img id="lightBox-img" class="lightBox-img img-fluid" src="" alt="Enlarged Image">
+        </div>
+    </div>
+
+
+    <script src="https://code.jquery.com/jquery-3.4.1.js"
+        integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+
+    <script src="{% static '/app/compalienV1.js' %}"></script>
+</body>
+
+</html>
